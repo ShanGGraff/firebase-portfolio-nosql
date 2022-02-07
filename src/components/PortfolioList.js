@@ -19,7 +19,7 @@ function PortfolioList(props) {
 }
 
 PortfolioList.propTypes = {
-  portfolioList : PropTypes.object,
-  onPortfolioSelection : PropTypes.func
+  portfolioList: PropTypes.object,
+  onPortfolioSelection: PropTypes.func
 }
 export default PortfolioList;

@@ -111,7 +111,8 @@ PortfolioControl.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    mainPortfolioList: state
+    mainPortfolioList: state.mainPortfolioList,
+    fromVisibleOnPage: state.formVisibleOnPage
   }
 }
 PortfolioControl = connect(mapStateToProps)(PortfolioControl);
