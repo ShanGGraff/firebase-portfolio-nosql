@@ -25,8 +25,9 @@ class PortfolioControl extends React.Component {
     } else {
         const { dispatch } = this.props;
         const action = {
-          dispatch(action);
+          type: 'TOGGLE_FORM'
         }
+        dispatch(action);
     }
   }
   handleAddingNewPortfolioToList = (newPortfolio) => {

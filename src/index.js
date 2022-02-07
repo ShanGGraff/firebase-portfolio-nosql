@@ -1,13 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './components/App';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import reducer from './reducers/portfolio-list-reducer';
 //import reportWebVitals from './reportWebVitals';
+import rootReducer from './reducers/index';
+
+const store = createStore(rootReducer);
 
 ReactDOM.render(
-  <React.Fragment>
+  <Provider store = {store}>
     <App />
-  </React.Fragment>,
+  </Provider>,
   document.getElementById('root')
 );
 
