@@ -5,15 +5,15 @@ import Portfolio from './Portfolio';
 function PortfolioList(props) {
   return ( 
   <React.Fragment>
-    {Object.values(props.portfolioList).map((portfolio) =>
-    <Portfolio 
+    {Object.values(props.portfolioList).map((portfolio) => {
+    return <Portfolio 
     whenPortfolioClicked = {props.onPortfolioSelection}
     project = {portfolio.project}
     skill = {portfolio.skill}
     bio = {portfolio.bio}
     id = {portfolio.id}
     key = {portfolio.id} />
-    )};
+  })};
   </React.Fragment>
   );
 }
@@ -22,4 +22,5 @@ PortfolioList.propTypes = {
   portfolioList: PropTypes.object,
   onPortfolioSelection: PropTypes.func
 }
+
 export default PortfolioList;

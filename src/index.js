@@ -4,7 +4,7 @@ import './index.css';
 import App from './components/App';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import reducer from './reducers/portfolio-list-reducer';
+// import reducer from './reducers/portfolio-list-reducer';
 //import reportWebVitals from './reportWebVitals';
 import rootReducer from './reducers/index';
 
