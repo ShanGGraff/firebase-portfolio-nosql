@@ -20,7 +20,7 @@ class PortfolioControl extends React.Component {
   handleClick = ()=> {
     if (this.state.selectedPortfolio != null){
       this.setState({
-        selectedTicket : null,
+        selectedPortfolio : null,
         editing: false
       });
     } else {
@@ -79,14 +79,14 @@ render(){
   let buttonText = null;
 
   if (this.state.editing ) {      
-    currentlyVisibleState = <EditPortfolioForm ticket = {this.state.selectedPortfolio} onEditPortfolio = {this.handleEditingPortfolioInList} />
+    currentlyVisibleState = <EditPortfolioForm portfolio = {this.state.selectedPortfolio} onEditPortfolio = {this.handleEditingPortfolioInList} />
     buttonText = "Return to Portfolio List";
-  } else if (this.state.selectedTicket != null) {
+  } else if (this.state.selectedPortfolio != null) {
     currentlyVisibleState = 
     <PortfolioDetail 
-      ticket = {this.state.selectedTicket}  
+      portfolio = {this.state.selectedPortfolio}  
       onClickingEdit = {this.handleEditClick} />
-    buttonText = "Return to Ticket List";
+    buttonText = "Return to Portfolio List";
   } else if (this.props.formVisibleOnPage) { 
     currentlyVisibleState = <NewPortfolioForm onNewPortfolioCreation={this.handleAddingNewPortfolioToList}  />;
     buttonText = "Return to Portfolio List";
@@ -113,7 +113,7 @@ PortfolioControl.propTypes = {
 const mapStateToProps = state => {
   return {
     mainPortfolioList: state.mainPortfolioList,
-    fromVisibleOnPage: state.formVisibleOnPage
+    formVisibleOnPage: state.formVisibleOnPage
   }
 }
 PortfolioControl = connect(mapStateToProps)(PortfolioControl);
