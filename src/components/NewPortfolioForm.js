@@ -2,6 +2,7 @@ import React from "react";
 import ReusableForm from "./ReusableForm";
 import PropTypes from "prop-types";
 import { v4 } from 'uuid';
+import { useFirestore } from 'react-redux-firebase';
 
 function NewPortfolioForm (props) {
   function handleNewPortfolioFormSubmission(event) {
