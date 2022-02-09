@@ -1,13 +1,21 @@
 import React from "react";
 import ReusableForm from "./ReusableForm";
 import PropTypes from "prop-types";
+import { useFirestore } from 'react-redux-firebase';
 
 function EditPortfolioForm (props) {
+  const firestore = useFirestore();
   const { portfolio } = props;
 
   function handleEditPortfolioFormSubmission(event) {
     event.preventDefault();
-    props.onEditPortfolio({project: event.target.project.value, skill: event.target.skill.value, bio: event.target.bio.value, id: portfolio.id});
+    props.onEditPortfolio();
+    const propertiesToUpdate = {
+      project: event.target.project.value,
+      skill: event.target.skill.value,
+      bio: event.target.bio.value
+    }
+    return firestore.update({collention: 'portfolios', doc: portfolio.id }, propertiesToUpdate)
   }
 
   return (

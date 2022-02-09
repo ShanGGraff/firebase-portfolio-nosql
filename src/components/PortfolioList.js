@@ -8,7 +8,7 @@ function PortfolioList(props) {
   useFirestoreConnect([
     { collection: 'portfolios'}
   ]);
-  const portfolios = useSelector(state => state.firestore.oredered.portfolios);
+  const portfolios = useSelector(state => state.firestore.ordered.portfolios);
   if(isLoaded(portfolios)){   
     return ( 
   <React.Fragment>

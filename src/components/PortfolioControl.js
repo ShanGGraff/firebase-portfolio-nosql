@@ -6,6 +6,7 @@ import EditPortfolioForm from './EditPortfolioForm';
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import * as a from './../actions';
+import { withFirestore } from 'react-redux-firebase'
 
 class PortfolioControl extends React.Component {
 
@@ -38,30 +39,30 @@ class PortfolioControl extends React.Component {
   }
   
   handleChangingSelectedPortfolio = (id) => {
-    const selectedPortfolio = this.props.mainPortfolioList[id];
-    this.setState({selectedPortfolio: selectedPortfolio});
+    // const selectedPortfolio = this.props.mainPortfolioList[id];
+    // this.setState({selectedPortfolio: selectedPortfolio});
+    this.props.firestore.get({collection: 'portfolios', doc: id}).then((portfolio) => {
+      const firestorePortfolio = {
+        names: portfolio.get("project"),
+        location: portfolio.get("skill"),
+        issue: portfolio.get("bio"),
+        id: portfolio.id
+      }
+      this.setState({selectedPortfolio: firestorePortfolio });
+    });
   }
+
   handleEditClick =()=> {
     console.log("handleEditClick reached!");
     this.setState({editing : true});
   }
   
-  // handleEditingPortfolioInList = (portfolioToEdit) => {
-  //   const { dispatch } = this.props;
-  //   const { id, project, skill, bio } = portfolioToEdit;
-  //   const action = {
-  //     type: 'ADD_PORTFOLIO',
-  //     id: id,
-  //     project: project,
-  //     skill: skill,
-  //     bio: bio,
-  //   }
-  //   dispatch(action);
-  //   this.setState({
-  //     editing: false,
-  //     selectedPortfolio: null
-  //   });
-  // }
+  handleEditingPortfolioInList = () => {
+    this.setState({
+      editing: false,
+      selectedTicket: null
+    });
+  }
 
 render(){
   let currentlyVisibleState = null;
@@ -106,4 +107,4 @@ const mapStateToProps = state => {
   }
 }
 PortfolioControl = connect(mapStateToProps)(PortfolioControl);
-export default PortfolioControl;
+export default withFirestore(PortfolioControl);
