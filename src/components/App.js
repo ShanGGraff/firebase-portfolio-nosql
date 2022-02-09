@@ -1,12 +1,23 @@
 import React from 'react';
 import Header from './Header';
 import PortfolioControl from './PortfolioControl';
+import Signin from "./Signin";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
-  return <React.Fragment>
-    <Header />
-    <PortfolioControl />
-  </React.Fragment>;
+  return ( 
+    <Router>
+      <Header />
+      <Switch>
+        <Route path="/signin">
+          <Signin />
+        </Route>
+        <Route path="/">
+          <PortfolioControl />
+        </Route>
+      </Switch>
+    </Router>
+  );
 }
 
 export default App;

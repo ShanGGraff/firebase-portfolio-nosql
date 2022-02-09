@@ -15,7 +15,7 @@ function EditPortfolioForm (props) {
       skill: event.target.skill.value,
       bio: event.target.bio.value
     }
-    return firestore.update({collention: 'portfolios', doc: portfolio.id }, propertiesToUpdate)
+    return firestore.update({collection: 'portfolios', doc: portfolio.id }, propertiesToUpdate)
   }
 
   return (
