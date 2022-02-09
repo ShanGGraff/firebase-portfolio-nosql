@@ -5,7 +5,7 @@ import PortfolioDetail from './PortfolioDetail';
 import EditPortfolioForm from './EditPortfolioForm';
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
-// import * as a from './../actions';
+import * as a from './../actions';
 
 class PortfolioControl extends React.Component {
 
@@ -31,21 +31,10 @@ class PortfolioControl extends React.Component {
         dispatch(action);
     }
   }
-  handleAddingNewPortfolioToList = (newPortfolio) => {
+  handleAddingNewPortfolioToList = () => {
     const { dispatch } = this.props;
-    const { id, project, skill, bio } = newPortfolio;
-    const action = {
-      type: 'ADD_PORTFOLIO',
-      id: id,
-      project: project,
-      skill: skill,
-      bio: bio,
-    }
+    const action = a.toggleForm();
     dispatch(action);
-    const action2 = {
-      type: 'TOGGLE_FORM'
-    }
-    dispatch(action2);
   }
   
   handleChangingSelectedPortfolio = (id) => {
@@ -57,22 +46,22 @@ class PortfolioControl extends React.Component {
     this.setState({editing : true});
   }
   
-  handleEditingPortfolioInList = (portfolioToEdit) => {
-    const { dispatch } = this.props;
-    const { id, project, skill, bio } = portfolioToEdit;
-    const action = {
-      type: 'ADD_PORTFOLIO',
-      id: id,
-      project: project,
-      skill: skill,
-      bio: bio,
-    }
-    dispatch(action);
-    this.setState({
-      editing: false,
-      selectedPortfolio: null
-    });
-  }
+  // handleEditingPortfolioInList = (portfolioToEdit) => {
+  //   const { dispatch } = this.props;
+  //   const { id, project, skill, bio } = portfolioToEdit;
+  //   const action = {
+  //     type: 'ADD_PORTFOLIO',
+  //     id: id,
+  //     project: project,
+  //     skill: skill,
+  //     bio: bio,
+  //   }
+  //   dispatch(action);
+  //   this.setState({
+  //     editing: false,
+  //     selectedPortfolio: null
+  //   });
+  // }
 
 render(){
   let currentlyVisibleState = null;

@@ -1,14 +1,24 @@
 import React from "react";
 import ReusableForm from "./ReusableForm";
 import PropTypes from "prop-types";
-import { v4 } from 'uuid';
+// import { v4 } from 'uuid';
 import { useFirestore } from 'react-redux-firebase';
 
+
 function NewPortfolioForm (props) {
+  const firestore = useFirestore();
   function handleNewPortfolioFormSubmission(event) {
     event.preventDefault();
-    props.onNewPortfolioCreation({project: event.target.project.value, skill: event.target.skill.value, bio: event.target.bio.value, id: v4()});
+    props.onNewPortfolioCreation();
+    return firestore.collection('portfolios').add(
+      {
+        project: event.target.project.value,
+        skill: event.target.skill.value,
+        bio: event.target.bio.value
+      }
+    );
   }
+
 
   return (
     <React.Fragment>
